@@ -1,6 +1,6 @@
 import React from 'react';
+import Modal from 'react-modal'
 
-import PostService from '../services/post-service';
 
 
 
@@ -16,7 +16,6 @@ export default class PostFromModal extends React.Component {
             error: ''
         }
 
-        this.postService = new PostService(props);
     }
 
     onTitleChange = (e) => {
@@ -43,15 +42,31 @@ export default class PostFromModal extends React.Component {
         e.preventDefault()
         let { title, imgUrl, fontUrl, content} = this.state;
         if(title && imgUrl && fontUrl && content) {
-            this.postService.createPost(title,imgUrl,fontUrl,content)
-            this.props.history.push('/')
+            this.props.onSubmit(title, imgUrl, fontUrl, content)
         } else {
             this.setState(() => ({error: 'Por favor preencha todos os campos'}))
         }
     }
+
+    resetState = () => {
+        this.setState(() => ({
+            title:  '',
+            imgUrl: '',
+            fontUrl: '',
+            content: '',
+        }))
+    }
+    
     render () {
         return (
-            <div>
+            <Modal
+              isOpen={this.props.isOpen}
+              onRequestClose={this.props.handleModal}
+              onAfterClose={this.resetState}
+              contentLabel= "Selected Option"
+              closeTimeoutMS={200}
+              ariaHideApp={false}
+            >
                {this.state.error && <p>{this.state.error}</p>}
                <form onSubmit={this.onSubmit}>
                   <input type='text' onChange={this.onTitleChange} placeholder='Digite o título' value={this.state.title}/>
@@ -63,7 +78,7 @@ export default class PostFromModal extends React.Component {
                </form>
 
 
-            </div>
+            </Modal>
         )
     }
 
