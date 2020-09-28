@@ -5,14 +5,16 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Login from './App/paginas/login';
-import CreatePostModal from './App/componentes/CreatePostModal'
+import UserPosts from './App/paginas/UserPosts'
+import InicialPage from './App/paginas/InicialPage'
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
         <Route path="/" exact component={Login} />
         <Route path="/login" exact component={Login} />
-        <Route path="/posts/my-posts" component={CreatePostModal}/>
+        <Route path="/posts" exact component={InicialPage}/>
+        <Route path="/posts/my-posts" component={UserPosts}/>
     </Switch>
 </ BrowserRouter>,
   document.getElementById('root')
