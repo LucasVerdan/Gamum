@@ -1,6 +1,7 @@
 import React from 'react'
 import PostService from '../services/post-service';
 import UserPostItem from './UserPostItem';
+import Grid from '@material-ui/core/Grid';
 
 
 class UsersPostList extends React.Component {
@@ -33,10 +34,12 @@ class UsersPostList extends React.Component {
     render(){
     return (
         <div>
-            <h1>Posts</h1>
+            <h1>My Posts</h1>
+            <Grid container spacing={4}>
             {
                 this.state.posts.map((post) => <UserPostItem key={post.id} post={post} history={this.props.history} />)
             }
+            </Grid>
         </div>
     )
     }
