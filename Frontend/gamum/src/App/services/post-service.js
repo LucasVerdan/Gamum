@@ -24,4 +24,8 @@ export default class PostService {
     deleteUserPost(postId) {
         this.service.delete(`/posts/delete/:${postId}`)
     }
+
+    updatePost(title, imgUrl, fontUrl, content,id){
+        this.service.post(`/posts/update/:${id}`, {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
+    }
 }
