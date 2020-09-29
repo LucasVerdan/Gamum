@@ -10,6 +10,7 @@ export default class PostFromModal extends React.Component {
         super(props);
 
         this.state = {
+            id: props.id ? props.id : '',
             title: props.title ? props.title : '',
             imgUrl: props.imgUrl ? props.imgUrl : '',
             fontUrl: props.fontUrl ? props.fontUrl : '',
@@ -41,29 +42,21 @@ export default class PostFromModal extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        let { title, imgUrl, fontUrl, content} = this.state;
+        let { id, title, imgUrl, fontUrl, content} = this.state;
         if(title && imgUrl && fontUrl && content) {
-            this.props.onSubmit(title, imgUrl, fontUrl, content)
+            this.props.onSubmit(title, imgUrl, fontUrl, content, id)
         } else {
             this.setState(() => ({error: 'Por favor preencha todos os campos'}))
         }
     }
 
-    resetState = () => {
-        this.setState(() => ({
-            title:  '',
-            imgUrl: '',
-            fontUrl: '',
-            content: '',
-        }))
-    }
     
     render () {
         return (
             <Modal
               isOpen={this.props.isOpen}
               onRequestClose={this.props.handleModal}
-              onAfterClose={this.resetState}
+
               contentLabel= "Selected Option"
               closeTimeoutMS={200}
               ariaHideApp={false}
@@ -71,7 +64,7 @@ export default class PostFromModal extends React.Component {
             >
                {this.state.error && <p className="warning">{this.state.error}</p>}
                <form onSubmit={this.onSubmit}>
-                  <h1 className="modal-title">{this.props.title !== ''? 'Crie o seu post' : 'Edite o seu post'}</h1>
+                  <h1 className="modal-title">Preencha os fomulários</h1>
                   <input className="input-form" type='text' onChange={this.onTitleChange} placeholder='Digite o título' value={this.state.title}/>
                   <input className="input-form" type='text' onChange={this.onImgUrlChange} placeholder='Digite a url da imagem' value={this.state.imgUrl}/>
                   <input className="input-form" type='text' onChange={this.onFontUrlChange} placeholder='Digite a url da fonte' value={this.state.fontUrl}/>

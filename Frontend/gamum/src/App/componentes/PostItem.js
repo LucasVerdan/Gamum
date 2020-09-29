@@ -8,8 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
 
+import EditPostModal from './EditPostModal'
 import DeletePostButton from './DeletePostButton'
 
 
@@ -44,7 +44,7 @@ const PostItem = (props) => {
                 uma data
               </Typography>
               <Typography variant="subtitle1" paragraph>
-                {props.description}
+                {props.content}
               </Typography>
               <Typography variant="subtitle1" color="primary">
                 Continue reading...
@@ -60,12 +60,19 @@ const PostItem = (props) => {
         
         </Card>
       </CardActionArea>
-      { props.user && <CardActions>
+      { props.user && <div>
         <DeletePostButton id={props.id} history={props.history}/>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> }
+        <EditPostModal
+          id = {props.id}
+          title = {props.title}
+          content = {props.content}
+          fontUrl = {props.fontUrl}
+          imgUrl = {props.imgUrl}
+          history = {props.history}
+        />
+
+        </div>
+       }
     </Grid>
     )
 }
