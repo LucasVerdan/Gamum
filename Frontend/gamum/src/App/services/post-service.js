@@ -13,4 +13,8 @@ export default class PostService {
         this.service.get('/posts') 
     }
 
+    getUserPosts(id) {
+        this.service.get(`/posts/:${id}`) 
+    }
+
 }

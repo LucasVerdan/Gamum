@@ -19,9 +19,9 @@ const PostList = (props) => {
             fontUrl: 'fsda',
             description: 'description 2'
         },
-        
 
-    ]
+    ] 
+    //         postService.getPosts()
     return (
         <div>
             <h1>Posts</h1>
