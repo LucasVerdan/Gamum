@@ -41,7 +41,7 @@ const PostItem = (props) => {
         </CardContent>
       </CardActionArea>
       </Link>
-      {props.user? 
+      {props.user && 
       <CardActions>
         <Button size="small" color="primary">
           Edit
@@ -49,7 +49,7 @@ const PostItem = (props) => {
         <Button size="small" color="primary">
           Delete
         </Button>
-      </CardActions> : ''}
+      </CardActions>}
       
     </Card>
     )

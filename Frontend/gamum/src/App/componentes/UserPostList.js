@@ -19,8 +19,6 @@ const UsersPostList = (props) => {
             fontUrl: 'fsda',
             description: 'description 2'
         },
-        
-
     ]
     return (
         <div>
