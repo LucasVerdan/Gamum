@@ -5,10 +5,10 @@ import PostItem from './PostItem';
 
 class PostList extends React.Component {
     constructor(props){
-
+       super(props);
        this.postService = new PostService(props)
 
-        super(props);
+        
 
         this.state = {
             posts: 
