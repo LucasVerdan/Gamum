@@ -4,13 +4,13 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Login from './App/paginas/login';
+import SignInPage from './App/paginas/SignInPage';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/login" exact component={Login} />
+        <Route path="/" exact component={SignInPage} />
+        <Route path="/login" exact component={SignInPage} />
     </Switch>
 </ BrowserRouter>,
   document.getElementById('root')
