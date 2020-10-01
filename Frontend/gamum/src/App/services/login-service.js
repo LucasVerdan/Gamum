@@ -6,6 +6,7 @@ export default class LoginService {
     }
 
     login(username, password){
+        console.log(username, password)
         this.service.post('/login', {username: username, password: password})
     }
 

@@ -4,15 +4,15 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Login from './App/paginas/login';
+import SignInPage from './App/paginas/SignInPage';
 import UserPosts from './App/paginas/UserPosts'
 import InicialPage from './App/paginas/InicialPage'
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/login" exact component={Login} />
+        <Route path="/" exact component={SignInPage} />
+        <Route path="/login" exact component={SignInPage} />
         <Route path="/posts" exact component={InicialPage}/>
         <Route path="/posts/my-posts" component={UserPosts}/>
     </Switch>
