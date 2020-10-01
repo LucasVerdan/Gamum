@@ -7,7 +7,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
-import Button from '@material-ui/core/Button';
 
 import EditPostModal from './EditPostModal'
 import DeletePostButton from './DeletePostButton'
@@ -61,7 +60,7 @@ const PostItem = (props) => {
         </Card>
       </CardActionArea>
       { props.user && <div>
-        <DeletePostButton id={props.id} history={props.history}/>
+        <DeletePostButton id={props.id} history={props.history}   />
         <EditPostModal
           id = {props.id}
           title = {props.title}

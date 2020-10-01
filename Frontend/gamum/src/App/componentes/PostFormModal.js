@@ -2,6 +2,9 @@ import React from 'react';
 import Modal from 'react-modal'
 import '../styles/modal.css'
 
+import Button from '@material-ui/core/Button';
+
+
 
 
 
@@ -70,7 +73,10 @@ export default class PostFromModal extends React.Component {
                   <input className="input-form" type='text' onChange={this.onFontUrlChange} placeholder='Digite a url da fonte' value={this.state.fontUrl}/>
                   <textarea className="text-area"onChange={this.onContentChange} placeholder='Digite o conteudo da postagem' value = {this.state.content}/>
 
-                  <button className="button">Add Post</button>
+                  <Button variant="contained" size="large" color="primary">
+                    ADD POST
+                  </Button>
+
                </form>
 
 
