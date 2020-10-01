@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+
+
 import PostFormModal from './PostFormModal';
 
 import PostService from '../services/post-service';
@@ -36,11 +39,9 @@ export default class CreatePostModal extends React.Component {
                   handleModal = {this.handleModal}
                   onSubmit = {this.onSubmit}
                />
-               <button
-                  onClick={this.handleModal}
-               >
-                Create Post 
-               </button>
+               <Button variant="contained" size="large" color="primary" onClick={this.handleModal}>
+                    create post
+                </Button>
             </div>
         )
     }

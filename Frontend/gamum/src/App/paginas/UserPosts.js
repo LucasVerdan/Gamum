@@ -3,6 +3,10 @@ import CreatePostModal from '../componentes/CreatePostModal';
 import UserPostList from '../componentes/UserPostList'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 import Header from '../componentes/Header'
 
@@ -16,14 +20,23 @@ const sections = [
 
   ];
 
+  const useStyles = makeStyles((theme) => ({
+    mainGrid: {
+      marginTop: theme.spacing(3),
+    },
+  }));
+
 const UserPosts = (props) => {
+  const classes = useStyles();
     return (
         <React.Fragment>
         <CssBaseline />
           <Container maxWidth="lg">
              <Header title="GAMUM" sections={sections} />
              <UserPostList history={props.history}/>
-             <CreatePostModal history={props.history}/>
+             <Grid container spacing={0} className={classes.mainGrid}>
+               <CreatePostModal history={props.history}/>
+             </Grid>
           </Container>
         </React.Fragment>
     )
