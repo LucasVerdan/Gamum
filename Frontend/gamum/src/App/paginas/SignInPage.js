@@ -30,8 +30,6 @@ function Copyright() {
     );
 }
 
-
-
 export default class SignInPage extends React.Component {
 
     constructor(props) {
@@ -77,9 +75,11 @@ export default class SignInPage extends React.Component {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
+                    <center>
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                    </center>
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
