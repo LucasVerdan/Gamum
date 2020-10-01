@@ -73,9 +73,9 @@ export default class PostFromModal extends React.Component {
                   <input className="input-form" type='text' onChange={this.onFontUrlChange} placeholder='Digite a url da fonte' value={this.state.fontUrl}/>
                   <textarea className="text-area"onChange={this.onContentChange} placeholder='Digite o conteudo da postagem' value = {this.state.content}/>
 
-                  <Button variant="contained" size="large" color="primary">
+                  <button variant="contained" size="large" color="primary">
                     ADD POST
-                  </Button>
+                  </button>
 
                </form>
 
