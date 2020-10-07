@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/login.css'
 
 import LoginService from '../services/login-service';
@@ -17,6 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import { useHistory } from "react-router-dom";
+
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -30,26 +32,23 @@ function Copyright() {
     );
 }
 
-export default class SignInPage extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            username: '',
-            password: ''
-        };
-
-        this.loginService = new LoginService(props);
+ const SignInPage = ({ props }) => {
+    const history = useHistory();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const pushToPost = () => {
+        
+        history.push("/posts")
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        let { username, password } = this.state;
-        this.loginService.login(username, password);
+    const handleSubmit = (event) => {
+        // const history = useHistory();
+        // event.preventDefault();
+        // // let { username, password } = this.state;
+        // history.push("/posts")
+        // this.loginService.login(username, password);
     }
-
-    render() {
 
         const classes = makeStyles((theme) => ({
             paper: {
@@ -83,7 +82,7 @@ export default class SignInPage extends React.Component {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <form className={classes.form} onSubmit={this.handleSubmit.bind(this)}>
+                    <form className={classes.form} onSubmit={handleSubmit}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -94,7 +93,7 @@ export default class SignInPage extends React.Component {
                             name="username"
                             autoComplete="username"
                             autoFocus
-                            onChange={(event) => this.setState({ [event.target.name]: event.target.value})}
+                            onChange={(event) => setUsername(event.target.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -106,14 +105,14 @@ export default class SignInPage extends React.Component {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            onChange={(event) => this.setState({ [event.target.name]: event.target.value})}
+                            onChange={(event) => setPassword(event.target.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
                         <Button
-                            type="submit"
+                            onClick={() => pushToPost()}
                             fullWidth
                             variant="contained"
                             color="primary"
@@ -143,7 +142,6 @@ export default class SignInPage extends React.Component {
     }
 
 
-}
 
 
-
+export default SignInPage;
