@@ -20,9 +20,9 @@ const InicialPage = (props) => {
 
         return (
           <React.Fragment>
+            <Header title="GAMUM" sections={sections} />
             <CssBaseline />
             <Container maxWidth="lg">
-              <Header title="GAMUM" sections={sections} />
               <main>
                   <PostsList/>          
               </main>

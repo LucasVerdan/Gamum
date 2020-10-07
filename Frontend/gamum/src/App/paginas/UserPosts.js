@@ -30,9 +30,9 @@ const UserPosts = (props) => {
   const classes = useStyles();
     return (
         <React.Fragment>
+        <Header title="GAMUM" sections={sections} />
         <CssBaseline />
           <Container maxWidth="lg">
-             <Header title="GAMUM" sections={sections} />
              <UserPostList history={props.history}/>
              <Grid container spacing={0} className={classes.mainGrid}>
                <CreatePostModal history={props.history}/>
