@@ -8,12 +8,14 @@ import SignInPage from './App/paginas/SignInPage';
 import UserPosts from './App/paginas/UserPosts'
 import InicialPage from './App/paginas/InicialPage'
 import PostPage from './App/paginas/PostPage'
+import RegisterPage from './App/paginas/RegisterPage'
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
         <Route path="/" exact component={SignInPage} />
         <Route path="/login" exact component={SignInPage} />
+        <Route path="/register" exact component={RegisterPage} />
         <Route path="/posts" exact component={InicialPage}/>
         <Route path="/posts/my-posts" component={UserPosts}/>
         <Route path="/posts/:id" component={PostPage}/>

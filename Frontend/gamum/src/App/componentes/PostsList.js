@@ -45,6 +45,7 @@ class PostList extends React.Component {
     render(){
     return (
         <Grid container spacing={4}>
+           
             {
                 this.state.posts.map((post) => <PostItem key={post.id} {...post} />)
             }
