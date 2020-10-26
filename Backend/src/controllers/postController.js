@@ -1,4 +1,4 @@
-const postService = require('../services/postServices')
+const postService = require('../services/postService')
 
 exports.createPost = async (req, res) => {
   postRequest = req.body
@@ -7,7 +7,9 @@ exports.createPost = async (req, res) => {
 }
 
 exports.getPost = async (req, res) => {
+  console.log('...')
     const allPosts = await postService.getPosts()
+    console.log('teste ' + allPosts);
     res.json(allPosts)
   }
 

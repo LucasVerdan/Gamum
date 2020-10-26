@@ -1,5 +1,6 @@
 var Post = require("../models/post");
 var mongoose = require('mongoose');
+const { response } = require("express");
 
 module.exports.create = async (post) => {
   const newPost = { ...mongoose.Types.ObjectId, ...post} 
@@ -10,8 +11,14 @@ module.exports.create = async (post) => {
 };
 
 module.exports.getPosts = async () => {
-    const posts = await Post.find();
-    return posts;
+  console.log('getPostsService')
+  Post.exists().then(res => console.log(res));
+
+    Post.find((err, res) => {
+      console.log(err, res);
+    });
+    console.log('resultado ' + '');
+    return "";
   };
 
 module.exports.deletePost = async (postId) => {
