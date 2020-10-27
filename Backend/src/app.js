@@ -1,4 +1,4 @@
-const { createPost, deletePost, getPost, updatePost } = require ('./controllers/postController');
+const { createPost, deletePost, getPost, updatePost, getPostById } = require ('./controllers/postController');
 
 const express = require('express');
 
@@ -30,6 +30,7 @@ app.post('/createPost', createPost)
 app.delete('/deletePost/:id', deletePost)
 app.get('/getPost', getPost)
 app.post('/updatePost/:id', updatePost)
+app.get('/getPost/:id', getPostById )
 
 
 app.listen(8080, () => {

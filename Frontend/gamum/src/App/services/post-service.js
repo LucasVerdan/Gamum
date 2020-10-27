@@ -10,12 +10,12 @@ export default class PostService {
     };
 
     getPost(postId){
-        this.service.get(`posts/:${postId}`)
+        return this.service.get(`/getPost/${postId}`)
     }
 
-    getUserPosts(userId) {
-        this.service.get(`/posts/my-posts/:${userId}`) 
-    }
+    // getUserPosts(userId) {
+    //     this.service.get(`/posts/my-posts/:${userId}`) 
+    // }
 
     deleteUserPost(postId) {
         return this.service.delete(`/deletePost/${postId}`)

@@ -11,7 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 import EditPostModal from './EditPostModal'
 import DeletePostButton from './DeletePostButton'
 
-
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -28,10 +28,12 @@ const useStyles = makeStyles({
 
 const PostItem = (props) => {
 
+  const history = useHistory();
+  
     const classes = useStyles();
     return (
      <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href={`/posts/${props.id}`}>
+      <CardActionArea component="a" onClick={() => history.push(`/posts/${props._id}`, { id: props._id} )} >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>

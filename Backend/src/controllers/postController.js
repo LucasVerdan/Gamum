@@ -21,3 +21,8 @@ exports.updatePost = async (req,res) => {
   const updatedPost = await postService.updatePost(postId, req.body);
   res.json(await postService.getPostById(postId));
 }
+
+exports.getPostById = async (req,res) => {
+  let postId = req.params.id;
+  res.json(await postService.getPostById(postId));
+}
