@@ -8,10 +8,16 @@ exports.createPost = async (req, res) => {
 exports.getPost = async (req, res) => {
     const allPosts = await postService.getPosts()
     res.json(allPosts)
-  }
+}
 
 exports.deletePost = async (req, res) => {
     const postParams = req.params;
     await postService.deletePost(postParams.id);
     res.status(204).send(true);
-  };
+}
+
+exports.updatePost = async (req,res) => {
+  let postId = req.params.id;
+  const updatedPost = await postService.updatePost(postId, req.body);
+  res.json(await postService.getPostById(postId));
+}

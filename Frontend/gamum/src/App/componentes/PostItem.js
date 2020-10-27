@@ -61,7 +61,8 @@ const PostItem = (props) => {
       { props.user && <div>
         <DeletePostButton id={props._id} history={props.history} deleteCallback={props.deleteCallback}  />
         <EditPostModal
-          id = {props.id}
+          updateCallback={props.updateCallback}
+          id = {props._id}
           title = {props.title}
           content = {props.content}
           fontUrl = {props.fontUrl}

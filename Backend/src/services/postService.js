@@ -27,3 +27,18 @@ module.exports.deletePost = async (postId) => {
   var dbo = await client.db("gamun");
   return dbo.collection("posts").deleteOne( { "_id": new mongodb.ObjectId(postId) } );
 };
+
+module.exports.updatePost = async (postId, post) => {
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+  return dbo.collection('posts').findOneAndUpdate(
+    { "_id": new mongodb.ObjectId(postId) }, 
+    { $set: post },
+    { upsert: true } );
+};
+
+module.exports.getPostById = async (postId) => {
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+  return dbo.collection('posts').findOne({ "_id": new mongodb.ObjectId(postId) });
+}

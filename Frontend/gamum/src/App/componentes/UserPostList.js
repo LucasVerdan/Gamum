@@ -29,13 +29,21 @@ class UsersPostList extends React.Component {
         })
     }
 
+    updateCallback = (post) => {
+        this.setState(state => {
+            return {
+                posts: state.posts.map(p => p._id === post._id ? {...post} : p)
+            }
+        }) 
+    }
+
     render(){
         return (
             <div>
                 <h1>My Posts</h1>
                 <Grid container spacing={4}>
                 {
-                    this.state.posts &&  this.state.posts.map((post) => <UserPostItem deleteCallback={this.deletePostCallback.bind(this)} key={post.id} post={post} history={this.props.history} />)
+                    this.state.posts &&  this.state.posts.map((post) => <UserPostItem updateCallback={this.updateCallback.bind(this)} deleteCallback={this.deletePostCallback.bind(this)} key={post.id} post={post} history={this.props.history} />)
                 }
                 </Grid>
                 <CreatePostModal 
