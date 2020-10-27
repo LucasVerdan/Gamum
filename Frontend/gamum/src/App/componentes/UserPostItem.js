@@ -4,7 +4,7 @@ import PostItem from '../componentes/PostItem'
 
 const UserPostItem = (props) => {
     return (
-        <PostItem user={true} {...props.post} history={props.history}/>
+        <PostItem user {...props.post} {...props} history={props.history}/>
     )
 }
 

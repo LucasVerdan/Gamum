@@ -18,7 +18,7 @@ export default class PostService {
     }
 
     deleteUserPost(postId) {
-        this.service.delete(`/posts/delete/:${postId}`)
+        return this.service.delete(`/deletePost/${postId}`)
     }
 
     updatePost(title, imgUrl, fontUrl, content,id){

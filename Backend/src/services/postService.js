@@ -2,6 +2,8 @@ var Post = require("../models/post");
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/gamun";
+var mongodb = require('mongodb');
+
 
 module.exports.create = async (post) => {
 
@@ -20,5 +22,8 @@ module.exports.getPosts = async () => {
 };
 
 module.exports.deletePost = async (postId) => {
-  Post.findByIdAndDelete(postId, function (err) { });
+
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+  return dbo.collection("posts").deleteOne( { "_id": new mongodb.ObjectId(postId) } );
 };

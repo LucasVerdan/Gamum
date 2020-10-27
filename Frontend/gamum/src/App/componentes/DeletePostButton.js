@@ -11,6 +11,7 @@ const DeletePostButton = (props) => {
     return(
         <Button  variant="contained" color="secondary" startIcon={<DeleteIcon />} onClick={() => {
             postService.deleteUserPost(props.id)
+                .then(e => props.deleteCallback(props.id))
         }}>
            Delete 
         </Button>

@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 const PostItem = (props) => {
 
     const classes = useStyles();
-
     return (
      <Grid item xs={12} md={6}>
       <CardActionArea component="a" href={`/posts/${props.id}`}>
@@ -60,7 +59,7 @@ const PostItem = (props) => {
         </Card>
       </CardActionArea>
       { props.user && <div>
-        <DeletePostButton id={props.id} history={props.history}   />
+        <DeletePostButton id={props._id} history={props.history} deleteCallback={props.deleteCallback}  />
         <EditPostModal
           id = {props.id}
           title = {props.title}

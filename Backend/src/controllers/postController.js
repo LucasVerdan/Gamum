@@ -11,7 +11,7 @@ exports.getPost = async (req, res) => {
   }
 
 exports.deletePost = async (req, res) => {
-    const postId = req.params.id;
-    await postService.delete(postId);
-    res.status(204).send();
+    const postParams = req.params;
+    await postService.deletePost(postParams.id);
+    res.status(204).send(true);
   };

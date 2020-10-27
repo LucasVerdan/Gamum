@@ -22,13 +22,12 @@ app.use(express.urlencoded());
 
 
 app.get('/login', (req, res) => {
-    console.log("teste");
     res.header("Access-Control-Allow-Origin", "*");
     res.status(200).send({ logged: true});
 })
 
 app.post('/createPost', createPost)
-app.post('/deletePost', deletePost)
+app.delete('/deletePost/:id', deletePost)
 app.get('/getPost', getPost)
 
 
