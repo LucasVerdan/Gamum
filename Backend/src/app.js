@@ -22,8 +22,8 @@ app.get('/login', (req, res) => {
 
 const { createPost, deletePost, getPost } = require ('./controllers/postController');
 
-app.post('/createPost', () => createPost)
-app.post('/deletePost', () => deletePost)
+app.post('/createPost', createPost)
+app.post('/deletePost', deletePost)
 app.get('/getPost', getPost)
 
 

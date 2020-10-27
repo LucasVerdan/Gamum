@@ -9,10 +9,6 @@ export default class PostService {
         this.service.post('/posts/create-post', {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
     };
 
-    getPosts() {
-        this.service.get('/posts') 
-    }
-
     getPost(postId){
         this.service.get(`posts/:${postId}`)
     }
@@ -27,5 +23,9 @@ export default class PostService {
 
     updatePost(title, imgUrl, fontUrl, content,id){
         this.service.post(`/posts/update/:${id}`, {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
+    }
+
+    obterPosts() {
+        return this.service.get('/getPost');
     }
 }
