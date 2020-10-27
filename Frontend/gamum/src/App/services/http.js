@@ -1,26 +1,17 @@
 import axios from 'axios';
 
 export default class HttpService {
-    
     constructor(props){
-        console.log(props);
+
         this.service = axios.create({
-            headers: {
-                'Content-Type': 'application/json',
-            }
+            baseURL: 'http://localhost:8080'
         });
 
         this.service.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
         this.service.interceptors.response.use(response => {
             return response;
-        }, error => {
-            console.log(error);
-            if (error.response) {
-                props.history.push('/login');
-            }
         });
-
     }
 
     get(path, config = null){

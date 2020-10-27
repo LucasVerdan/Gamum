@@ -21,6 +21,7 @@ export default class CreatePostModal extends React.Component {
 
     onSubmit = (title, imgUrl, fontUrl, content) => {
         this.postService.createPost(title,imgUrl,fontUrl,content)
+            .then(e => this.props.createCallback(e.data));
         this.handleModal();
     }
 

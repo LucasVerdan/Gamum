@@ -7,4 +7,4 @@ router.post('/createPost', create)
 router.post('/deletePost', deletePost)
 router.post('/getPost', getPost)
 
-module.exports.router;
+module.exports = router;

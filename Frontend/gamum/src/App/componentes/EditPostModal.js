@@ -20,6 +20,7 @@ export default class EditPostModal extends React.Component {
 
     onSubmit = (title, imgUrl, fontUrl, content, id) => {
         this.postService.updatePost(title,imgUrl,fontUrl,content,id)
+            .then(response => this.props.updateCallback(response.data))
         this.handleModal();
     }
 

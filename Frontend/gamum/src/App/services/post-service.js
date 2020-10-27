@@ -6,26 +6,26 @@ export default class PostService {
     }
 
     createPost(title, imgUrl, fontUrl, content){
-        this.service.post('/posts/create-post', {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
+        return this.service.post('/createPost', {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
     };
 
-    getPosts() {
-        this.service.get('/posts') 
-    }
-
     getPost(postId){
-        this.service.get(`posts/:${postId}`)
+        return this.service.get(`/getPost/${postId}`)
     }
 
-    getUserPosts(userId) {
-        this.service.get(`/posts/my-posts/:${userId}`) 
-    }
+    // getUserPosts(userId) {
+    //     this.service.get(`/posts/my-posts/:${userId}`) 
+    // }
 
     deleteUserPost(postId) {
-        this.service.delete(`/posts/delete/:${postId}`)
+        return this.service.delete(`/deletePost/${postId}`)
     }
 
-    updatePost(title, imgUrl, fontUrl, content,id){
-        this.service.post(`/posts/update/:${id}`, {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
+    updatePost(title, imgUrl, fontUrl, content, id){
+        return this.service.post(`/updatePost/${id}`, {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content})
+    }
+
+    obterPosts() {
+        return this.service.get('/getPost');
     }
 }

@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const COLLECTION_NAME = 'Rooms'
+const COLLECTION_NAME = 'posts'
 
 const postSchema = new Schema(
     {
-        id,
-        title,
-        imgUrl,
-        fontUrl,
-        content
+        id: Number,
+        title: String,
+        imgUrl: String,
+        fontUrl: String,
+        content: String
     }
 )
 
