@@ -2,6 +2,7 @@ import React from 'react'
 import PostService from '../services/post-service';
 import UserPostItem from './UserPostItem';
 import Grid from '@material-ui/core/Grid';
+import CreatePostModal from '../componentes/CreatePostModal';
 
 
 class UsersPostList extends React.Component {
@@ -35,20 +36,30 @@ class UsersPostList extends React.Component {
             ]   //         postService.getPosts(user.id)
         }
 
-       
+    }
+
+    createPostCallback = (post) => {
+        this.setState(state => {
+            return {
+                posts: state.posts.concat(post)
+            }
+        })
     }
 
     render(){
-    return (
-        <div>
-            <h1>My Posts</h1>
-            <Grid container spacing={4}>
-            {
-                this.state.posts.map((post) => <UserPostItem key={post.id} post={post} history={this.props.history} />)
-            }
-            </Grid>
-        </div>
-    )
+        return (
+            <div>
+                <h1>My Posts</h1>
+                <Grid container spacing={4}>
+                {
+                    this.state.posts &&  this.state.posts.map((post) => <UserPostItem key={post.id} post={post} history={this.props.history} />)
+                }
+                </Grid>
+                <CreatePostModal 
+                    history={this.props.history}
+                    createCallback={this.createPostCallback.bind(this)} />
+            </div>
+        );
     }
 }
 

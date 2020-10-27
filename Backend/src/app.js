@@ -1,3 +1,5 @@
+const { createPost, deletePost, getPost } = require ('./controllers/postController');
+
 const express = require('express');
 
 const app = express()
@@ -12,15 +14,18 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 // Routes
+
+
+
 app.get('/login', (req, res) => {
     console.log("teste");
     res.header("Access-Control-Allow-Origin", "*");
     res.status(200).send({ logged: true});
 })
-
-
-const { createPost, deletePost, getPost } = require ('./controllers/postController');
 
 app.post('/createPost', createPost)
 app.post('/deletePost', deletePost)

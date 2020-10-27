@@ -4,11 +4,11 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/gamun";
 
 module.exports.create = async (post) => {
-  const newPost = { ...mongoose.Types.ObjectId, ...post }
-  await newPost.save((err) => {
-    if (err) console.log(err);
-  });
-  return newPost;
+
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+
+  return dbo.collection("posts").insertOne(post);  
 };
 
 module.exports.getPosts = async () => {

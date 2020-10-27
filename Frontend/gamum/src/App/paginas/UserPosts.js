@@ -1,9 +1,7 @@
 import React from 'react';
-import CreatePostModal from '../componentes/CreatePostModal';
 import UserPostList from '../componentes/UserPostList'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -34,9 +32,6 @@ const UserPosts = (props) => {
         <CssBaseline />
           <Container maxWidth="lg">
              <UserPostList history={props.history}/>
-             <Grid container spacing={0} className={classes.mainGrid}>
-               <CreatePostModal history={props.history}/>
-             </Grid>
           </Container>
         </React.Fragment>
     )
