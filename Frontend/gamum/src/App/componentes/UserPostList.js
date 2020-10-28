@@ -42,6 +42,7 @@ class UsersPostList extends React.Component {
             <div>
                 <h1>My Posts</h1>
                 <Grid container spacing={4}>
+                    {console.log(this.state.posts)}
                 {
                     this.state.posts &&  this.state.posts.map((post) => <UserPostItem updateCallback={this.updateCallback.bind(this)} deleteCallback={this.deletePostCallback.bind(this)} key={post.id} post={post} history={this.props.history} />)
                 }
