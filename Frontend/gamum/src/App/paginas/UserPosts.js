@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserPostList from '../componentes/UserPostList'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -26,6 +26,7 @@ const sections = [
 
 const UserPosts = (props) => {
   const classes = useStyles();
+  
     return (
         <React.Fragment>
         <Header title="GAMUM" sections={sections} />

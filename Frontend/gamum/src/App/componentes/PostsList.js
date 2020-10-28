@@ -9,13 +9,17 @@ class PostList extends React.Component {
     constructor(props){
        super(props);
        this.postService = new PostService(props);
-       this.state = { posts: [] }
+       this.state = { 
+           posts: [],
+           shoudRenderPostList: true,
+           filteredPosts: ''
+        }
     }
 
     componentDidMount() {
         this.postService.obterPosts()
             .then(response => this.setState({  posts: response.data }));
-            
+            this.setState({ filteredPosts: this.props.section})
     }
 
     render(){
@@ -24,8 +28,13 @@ class PostList extends React.Component {
         
         return (
             <Grid container spacing={4}>
+                {console.log(posts)}
                 {
+                    
+                    this.props.section === '' ? 
                     posts && posts.map((post) => <PostItem key={post.id} {...post} />)
+                    :
+                    posts && posts.filter(post => post.title === this.props.section).map((post) => <PostItem key={post.id} {...post} />)
                 }
             </Grid>
         );

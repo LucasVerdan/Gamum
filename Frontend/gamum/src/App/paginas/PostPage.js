@@ -14,10 +14,11 @@ const sections = [
 const PostPage = (props) => {
     const postService = new PostService(props)
   //const post = postService.getPost(props.match.params.id)
+  
     return(
         <div>
            <Header title="GAMUM" sections={sections} />
-           <PostContent history={props.history} post/>
+           <PostContent history={props.history} />
          </div>
     );
 }

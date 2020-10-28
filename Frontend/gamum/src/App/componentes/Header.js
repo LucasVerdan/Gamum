@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const { sections, title } = props;
+  const { sections, title, getCurrentSection } = props;
+  const [titulo, setTitulo] = useState('');
 
   return (
     <React.Fragment>
@@ -43,9 +44,12 @@ export default function Header(props) {
         >
           {title}
         </Typography>
-        <IconButton>
+        <div>
+        <IconButton onClick={getCurrentSection(titulo)}>
           <SearchIcon />
         </IconButton>
+        Pesquisar: <input onChange={(e) => setTitulo(e.target.value)}/>
+        </div>
         <Button variant="outlined" size="small" href="/posts/my-posts">
           My Posts
         </Button>
@@ -59,6 +63,7 @@ export default function Header(props) {
             variant="body2"
             href={section.url}
             className={classes.toolbarLink}
+            onClick={() => getCurrentSection(section.title)}
           >
             {section.title}
           </Link>

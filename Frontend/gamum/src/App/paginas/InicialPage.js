@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -17,14 +17,18 @@ const sections = [
   ];
 
 const InicialPage = (props) => {
+  const [sectionPost, setSection ] = useState('');
+  const getCurrentSection = (section) => {
+    setSection(section);
+  }
 
         return (
           <React.Fragment>
-            <Header title="GAMUM" sections={sections} />
+            <Header title="GAMUM" sections={sections} getCurrentSection={(data) => getCurrentSection(data)}/>
             <CssBaseline />
             <Container maxWidth="lg">
               <main>
-                  <PostsList/>          
+                  <PostsList  section={sectionPost} />          
               </main>
             </Container>
           </React.Fragment>
