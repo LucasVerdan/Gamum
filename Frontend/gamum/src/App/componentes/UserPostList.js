@@ -13,6 +13,11 @@ class UsersPostList extends React.Component {
         this.state = { posts: [] }
     }
 
+    componentDidMount() {
+        this.postService.obterPosts()
+            .then(response => this.setState({  posts: response.data }));
+    }
+
     createPostCallback = (post) => {
         this.setState(state => {
             return {
