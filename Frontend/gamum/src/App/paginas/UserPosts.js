@@ -26,13 +26,17 @@ const sections = [
 
 const UserPosts = (props) => {
   const classes = useStyles();
+  const [sectionPost, setSection ] = useState('');
+  const getCurrentSection = (section) => {
+    setSection(section);
+  }
   
     return (
         <React.Fragment>
-        <Header title="GAMUM" sections={sections} />
+        <Header title="GAMUM" sections={sections} getCurrentSection={(data) => getCurrentSection(data)}/>
         <CssBaseline />
           <Container maxWidth="lg">
-             <UserPostList history={props.history}/>
+             <UserPostList history={props.history} section={sectionPost}/>
           </Container>
         </React.Fragment>
     )
