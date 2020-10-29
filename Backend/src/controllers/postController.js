@@ -26,3 +26,7 @@ exports.getPostById = async (req,res) => {
   let postId = req.params.id;
   res.json(await postService.getPostById(postId));
 }
+
+exports.getUserPosts = async (req,res) => {
+  res.json(await postService.getPostByUserId(req.body.userId));
+}

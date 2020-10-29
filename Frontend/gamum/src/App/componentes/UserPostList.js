@@ -14,7 +14,7 @@ class UsersPostList extends React.Component {
     }
 
     componentDidMount() {
-        this.postService.obterPosts()
+        this.postService.getUserPosts(localStorage.getItem('userId'))
             .then(response => this.setState({  posts: response.data }));
     }
 

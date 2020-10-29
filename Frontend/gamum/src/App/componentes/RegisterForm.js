@@ -1,7 +1,8 @@
 import React from 'react'
 import '../styles/modal.css'
-
+import LoginService from '../services/login-service'
 export default class RegisterForm extends React.Component {
+
     constructor(props){
         super(props)
         this.state = {
@@ -11,7 +12,9 @@ export default class RegisterForm extends React.Component {
             password: '',
             error: '',
         }
-        
+
+        this.loginService = new LoginService(props);
+
     }
     onCompleteNameChange = (e) => {
         const completeName = e.target.value
@@ -37,9 +40,10 @@ export default class RegisterForm extends React.Component {
         e.preventDefault()
         let {completeName,email,userName,password} = this.state
         if(completeName && email && userName && password){
-            //adiciona ao banco
+            this.loginService.signUp(userName, password )
+                .then(e => alert('registrado com sucesso!'));
         } else {
-            this.setState(() => ({error: 'Por favor preencha todos os campos'}))
+            this.setState(() => ( alert('{error: Por favor preencha todos os campos}')))
         }
 
     }

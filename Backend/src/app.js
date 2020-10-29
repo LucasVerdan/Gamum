@@ -1,5 +1,5 @@
-const { createPost, deletePost, getPost, updatePost, getPostById } = require ('./controllers/postController');
-
+const { createPost, deletePost, getPost, updatePost, getPostById, getUserPosts } = require ('./controllers/postController');
+const { auth, register } = require('./controllers/userController');
 const express = require('express');
 
 const app = express()
@@ -25,10 +25,14 @@ app.get('/login', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.status(200).send({ logged: true});
 })
+app.post('/auth', auth)
+app.post('/register', register)
+
 
 app.post('/createPost', createPost)
 app.delete('/deletePost/:id', deletePost)
 app.get('/getPost', getPost)
+app.post('/getUserPosts', getUserPosts)
 app.post('/updatePost/:id', updatePost)
 app.get('/getPost/:id', getPostById )
 
