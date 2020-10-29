@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 
 
@@ -6,49 +6,39 @@ import PostFormModal from './PostFormModal';
 import PostService from '../services/post-service';
 
 
-export default class EditPostModal extends React.Component {
+const EditPostModal = (props) => {
 
-    constructor(props) {
-        super(props)
+    let postService = new PostService(props);
+    const [isOpen, setOpen] = useState(false);
 
-        this.state = {
-            isOpen: false
-        }
-
-        this.postService = new PostService(props);
+    const onSubmit = (title, imgUrl, fontUrl, content, id) => {
+        postService.updatePost(title,imgUrl,fontUrl,content,id)
+            .then(response => props.updateCallback(response.data))
+        handleModal();
     }
 
-    onSubmit = (title, imgUrl, fontUrl, content, id) => {
-        this.postService.updatePost(title,imgUrl,fontUrl,content,id)
-            .then(response => this.props.updateCallback(response.data))
-        this.handleModal();
+    const handleModal = () => {
+        setOpen(!isOpen)
     }
-
-    handleModal = () => {
-        this.setState((prev) => ({
-            isOpen: !prev.isOpen
-        }))
-    }
-
-    render() {
 
         return (
             <div>
                <PostFormModal
-                  isOpen={this.state.isOpen}
-                  handleModal = {this.handleModal}
-                  onSubmit = {this.onSubmit}
-                  id = {this.props.id}
-                  title = {this.props.title}
-                  content = {this.props.content}
-                  fontUrl = {this.props.fontUrl}
-                  imgUrl = {this.props.imgUrl}
+                  isOpen={isOpen}
+                  handleModal = {handleModal}
+                  onSubmit = {onSubmit}
+                  id = {props._id}
+                  title = {props.title}
+                  content = {props.content}
+                  fontUrl = {props.fontUrl}
+                  imgUrl = {props.imgUrl}
 
                />
-               <Button size="small" color="primary" onClick={this.handleModal}>
+               <Button size="small" color="primary" onClick={handleModal}>
                   Edit 
                </Button>
             </div>
         )
-    }
+    
 }
+export default EditPostModal;

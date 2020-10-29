@@ -29,7 +29,8 @@ const useStyles = makeStyles({
 const PostItem = (props) => {
 
   const history = useHistory();
-  
+  const date = new Date();
+
     const classes = useStyles();
     return (
      <Grid item xs={12} md={6}>
@@ -41,18 +42,15 @@ const PostItem = (props) => {
                 {props.title}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                uma data
+                { date.toDateString() }
               </Typography>
               <Typography variant="subtitle1" paragraph>
-                {props.content}
+                { props.content.substring(0, props.short ? 100 : 142).concat(' [...]') }
               </Typography>
               <Typography variant="subtitle1" color="primary">
                 Continue reading...
               </Typography>
             </CardContent>
-              
-              
-
           </div>
           <Hidden xsDown>
             <CardMedia className={classes.cardMedia} image={props.imgUrl}  />
@@ -60,20 +58,6 @@ const PostItem = (props) => {
         
         </Card>
       </CardActionArea>
-      { props.user && <div>
-        <DeletePostButton id={props._id} history={props.history} deleteCallback={props.deleteCallback}  />
-        <EditPostModal
-          updateCallback={props.updateCallback}
-          id = {props._id}
-          title = {props.title}
-          content = {props.content}
-          fontUrl = {props.fontUrl}
-          imgUrl = {props.imgUrl}
-          history = {props.history}
-        />
-
-        </div>
-       }
     </Grid>
     )
 }

@@ -6,7 +6,11 @@ export default class LoginService {
     }
 
     login(username, password){
-        return this.service.get('/login', {username: username, password: password});     
+        return this.service.post('/auth', {username: username, password: password});     
+    }
+
+    signUp(username, password){
+        return this.service.post('/register', {username: username, password: password});
     }
 
 }

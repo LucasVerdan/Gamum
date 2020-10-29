@@ -41,12 +41,12 @@ const SignInPage = ({ props }) => {
 
     const pushToPost = () => {
         loginService.login(username, password)
-        .then(response => {
+            .then(response => {
                 let { data } = response;
-                if(data && data.logged)
-                    history.push('/posts')
+                history.push('/posts')
+                localStorage.setItem('userId' , data._id)
             })
-            .catch(err => console.warn(err));
+            .catch(err => alert(err))
     }
 
 
