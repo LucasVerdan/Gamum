@@ -9,4 +9,8 @@ export default class LoginService {
         return this.service.get('/login', {username: username, password: password});     
     }
 
+    signUp(username, password){
+        
+    }
+
 }
