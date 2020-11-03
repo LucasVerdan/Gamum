@@ -7,11 +7,10 @@ const UserPostItem = (props) => {
     return (
         <div>
             <PostItem 
-                short 
                 history={props.history}
                 {...props} {...props.post}  />
             <DeletePostButton 
-                id={props._id} 
+                id={props.post._id} 
                 history={props.history} 
                 deleteCallback={props.deleteCallback} />
             <EditPostModal

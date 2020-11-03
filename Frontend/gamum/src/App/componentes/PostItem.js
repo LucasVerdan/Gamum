@@ -39,13 +39,13 @@ const PostItem = (props) => {
           <div className={classes.cardDetails}>
             <CardContent>
               <Typography component="h2" variant="h5">
-                {props.title}
+                { props.title }
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                { date.toDateString() }
+                { props.date }
               </Typography>
               <Typography variant="subtitle1" paragraph>
-                { props.content.substring(0, props.short ? 100 : 142).concat(' [...]') }
+                { props.content.substring(0, props.short ? 100 : 142).concat( props.content.length > 100 ? ' [...]' : '') }
               </Typography>
               <Typography variant="subtitle1" color="primary">
                 Continue reading...

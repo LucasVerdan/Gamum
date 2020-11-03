@@ -5,8 +5,8 @@ export default class PostService {
         this.service = new HttpService(props);
     }
 
-    createPost(title, imgUrl, fontUrl, content, userId){
-        return this.service.post('/createPost', {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content, userId: userId})
+    createPost(title, imgUrl, fontUrl, content, userId, date){
+        return this.service.post('/createPost', {title: title, imgUrl: imgUrl, fontUrl: fontUrl, content: content, userId: userId, date: date})
     };
 
     getPost(postId){
