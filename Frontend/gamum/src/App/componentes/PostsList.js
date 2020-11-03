@@ -34,7 +34,7 @@ class PostList extends React.Component {
                     this.props.section === '' ? 
                     posts && posts.map((post) => <PostItem key={post.id} {...post} />)
                     :
-                    posts && posts.filter(post => post.title === this.props.section).map((post) => <PostItem key={post.id} {...post} />)
+                    posts && posts.filter(post => post.title.toString().includes(this.props.section)).map((post) => <PostItem key={post.id} {...post} />)
                 }
             </Grid>
         );

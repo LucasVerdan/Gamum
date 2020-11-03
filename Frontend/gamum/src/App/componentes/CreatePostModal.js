@@ -22,7 +22,7 @@ export default class CreatePostModal extends React.Component {
     onSubmit = (title, imgUrl, fontUrl, content) => {
         let userId = localStorage.getItem('userId');
         if( userId )
-            this.postService.createPost(title,imgUrl,fontUrl,content,userId)
+            this.postService.createPost(title,imgUrl,fontUrl,content,userId, new Date().toDateString())
                 .then(e => this.props.createCallback(e.data));
             this.handleModal();
     }
