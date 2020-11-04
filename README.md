@@ -1,7 +1,7 @@
 # Gamum
 
 
-# Prerequisitos
+# Pré-requisitos
   * Gerenciador de pacotes **Yarn** 
   * **MongoDB Shell** + **Mongosh**
   * **NodeJS**
