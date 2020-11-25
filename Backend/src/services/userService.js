@@ -24,3 +24,10 @@ module.exports.getUser = async (id) => {
     return await dbo.collection('users').findOne({ "_id": new mongodb.ObjectId(id) });
 
 }
+
+module.exports.getUsers = async () => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    var dbo = await client.db("gamun");
+
+    return await dbo.collection('users').find().toArray();
+}

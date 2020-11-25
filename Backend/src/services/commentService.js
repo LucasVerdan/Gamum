@@ -14,10 +14,12 @@ module.exports.getCommentsByPostId = async (postId) => {
 }
 
 module.exports.create = async (comment) => {
- 
-
   const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
   var dbo = await client.db("gamun");
+
+  let user = await userService.getUser(comment.userId);
+
+  comment = {...comment, author: user.username };
 
   return dbo.collection("comments").insertOne(comment);  
 }

@@ -36,7 +36,7 @@ export default class CreatePostModal extends React.Component {
     render() {
 
         return (
-            <div>
+            <div style={{paddingTop: '25px'}}>
                <PostFormModal
                   isOpen={this.state.isOpen}
                   handleModal = {this.handleModal}

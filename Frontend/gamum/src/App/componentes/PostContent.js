@@ -38,6 +38,8 @@ const PostContent = (props) => {
   const [imgUrl, setImgUrl] = useState('');
   const [fontUrl, setFontUrl] = useState('');
   const [id, setId] = useState('');
+  const [like, setLike] = useState(0);
+  const [dislike, setDislike] = useState(0);
 
 
   useEffect(() => {
@@ -51,6 +53,12 @@ const PostContent = (props) => {
         setImgUrl(post.imgUrl);
         setFontUrl(post.fontUrl);
       })
+
+      postService.getLikes(postId)
+        .then(res => {
+          setLike(res.data[0]);
+          setDislike(res.data[1]);
+        })
   })
 
   return (
@@ -85,7 +93,17 @@ const PostContent = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        { id && <CommentList id={id}/>}
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+          { id && 
+            <div>
+              <span>{like}<button onClick={() => postService.like(localStorage.getItem('userId'), id).then(res => { setLike(res.data[0]); setDislike(res.data[1]); })}>Like</button></span>
+              <span>{dislike}<button onClick={() => postService.dislike(localStorage.getItem('userId'), id).then(res => { setLike(res.data[0]); setDislike(res.data[1]); })}>Dislike</button></span>
+            </div>}
+          { id && <CommentList id={id}/>}
+          </Grid>
+        </Grid>
+
       </Paper>
     </div>
   );
