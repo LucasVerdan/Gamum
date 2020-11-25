@@ -1,7 +1,8 @@
 import React from 'react'
 import '../styles/modal.css'
 import LoginService from '../services/login-service'
-export default class RegisterForm extends React.Component {
+import { withRouter } from 'react-router-dom';
+class RegisterForm extends React.Component {
 
     constructor(props){
         super(props)
@@ -41,7 +42,7 @@ export default class RegisterForm extends React.Component {
         let {completeName,email,userName,password} = this.state
         if(completeName && email && userName && password){
             this.loginService.signUp(userName, password )
-                .then(e => alert('registrado com sucesso!'));
+                .then(e => { alert('registrado com sucesso!'); this.props.history.push('/login')})
         } else {
             this.setState(() => ( alert('{error: Por favor preencha todos os campos}')))
         }
@@ -68,3 +69,4 @@ export default class RegisterForm extends React.Component {
         )
     }
 }
+export default withRouter(RegisterForm)

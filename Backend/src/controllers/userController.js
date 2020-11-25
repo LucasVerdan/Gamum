@@ -9,5 +9,5 @@ exports.auth = async (req,res) => {
 exports.register = async (req, res) => {
     await userService.register(req.body)
         .then(e => res.json(e))
-        .catch(err => next(err));
+        .catch(err => res.status(300));
 }
