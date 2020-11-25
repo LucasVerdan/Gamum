@@ -28,7 +28,6 @@ class PostList extends React.Component {
         
         return (
             <Grid container spacing={4}>
-                {console.log(posts)}
                 {
                     
                     this.props.section === '' ? 

@@ -44,7 +44,6 @@ module.exports.getPostById = async (postId) => {
 }
 
 module.exports.getPostByUserId = async (userId) => {
-  console.log(userId);
   const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
   var dbo = await client.db("gamun");
   const r = await dbo.collection('posts').find({ userId: userId}).toArray()

@@ -5,7 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import PostService from '../services/post-service';
-
+import CommentsBlock from 'simple-react-comments';
+import CommentList from '../componentes/CommentList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,11 +42,10 @@ const PostContent = (props) => {
 
   useEffect(() => {
     let postId = props.history && props.history.location && props.history.location.state && props.history.location.state.id && props.history.location.state.id;
-    console.log(postId)
     postService.getPost(postId)
       .then(response => {
         let post = response.data;
-        setId(post.id);
+        setId(post._id);
         setTitle(post.title);
         setContent(post.content);
         setImgUrl(post.imgUrl);
@@ -57,34 +57,35 @@ const PostContent = (props) => {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-        <Grid item xs={12}>
-           <Typography variant="h2" component="h2" gutterBottom>
-              { title }
-           </Typography>
-        </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h2" component="h2" gutterBottom>
+              {title}
+            </Typography>
+          </Grid>
           <Grid item >
-           <Typography variant="body2" style={{ cursor: 'pointer' }}>
-            Add Category
+            <Typography variant="body2" style={{ cursor: 'pointer' }}>
+              Add Category
            </Typography>
-            
+
             {
-              imgUrl && imgUrl != '' && <img className={classes.img} alt="complex" src={imgUrl} /> 
+              imgUrl && imgUrl != '' && <img className={classes.img} alt="complex" src={imgUrl} />
             }
-            
+
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                
+
                 <Typography variant="body2" gutterBottom>
-                  { content }
+                  {content}
                 </Typography>
-               
+
               </Grid>
-              
+
             </Grid>
           </Grid>
         </Grid>
+        { id && <CommentList id={id}/>}
       </Paper>
     </div>
   );
