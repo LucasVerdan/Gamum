@@ -1,5 +1,6 @@
-const { createPost, deletePost, getPost, updatePost, getPostById, getUserPosts } = require ('./controllers/postController');
+const { createPost, deletePost, getPost, updatePost, getPostById, getUserPosts, likePost, dislikePost, getLikes } = require ('./controllers/postController');
 const { auth, register } = require('./controllers/userController');
+const { getComments, createComment } = require('./controllers/commentController')
 const express = require('express');
 
 const app = express()
@@ -36,6 +37,13 @@ app.post('/getUserPosts', getUserPosts)
 app.post('/updatePost/:id', updatePost)
 app.get('/getPost/:id', getPostById )
 
+app.post('/like', likePost);
+app.post('/dislike', dislikePost)
+app.get('/getLikes/:id', getLikes )
+
+
+app.get('/getComments/:id', getComments)
+app.post('/createComment', createComment)
 
 app.listen(8080, () => {
 	console.log('Server is running...')

@@ -32,4 +32,16 @@ export default class PostService {
     getUserPosts(userId) {
         return this.service.post('/getUserPosts', {userId: userId})
     }
+
+    like(userId, postId){
+        return this.service.post('/like', {userId: userId, postId: postId});
+    }
+
+    dislike(userId,postId){
+        return this.service.post('/dislike', {userId: userId, postId: postId});
+    }
+
+    getLikes(postId) {
+        return this.service.get(`/getLikes/${postId}`);
+    }
 }

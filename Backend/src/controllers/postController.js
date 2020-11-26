@@ -1,7 +1,6 @@
 const postService = require('../services/postService')
 
 exports.createPost = async (req, res) => {
-  console.log(req.body)
   const room = await postService.create(req.body);
   res.json(room.ops);
 }
@@ -30,4 +29,16 @@ exports.getPostById = async (req,res) => {
 
 exports.getUserPosts = async (req,res) => {
   res.json(await postService.getPostByUserId(req.body.userId));
+}
+
+exports.likePost = async (req,res) => {
+  res.json(await postService.like( { ...req.body, like: 1}));
+}
+
+exports.dislikePost = async (req,res) => {
+  res.json(await postService.dislike( { ...req.body, like: 0}))
+}
+
+exports.getLikes = async (req,res) => {
+  res.json(await postService.getLikes(req.params.id));
 }

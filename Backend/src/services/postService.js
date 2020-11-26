@@ -44,9 +44,49 @@ module.exports.getPostById = async (postId) => {
 }
 
 module.exports.getPostByUserId = async (userId) => {
-  console.log(userId);
   const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
   var dbo = await client.db("gamun");
   const r = await dbo.collection('posts').find({ userId: userId}).toArray()
   return r
+}
+
+module.exports.like = async (o) => {
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+  const r = await dbo.collection('posts_vote').find( { $and: [{userId: o.userId}, {postId: o.postId}] }).toArray()
+  if( r.length > 0 ) {
+      await dbo.collection('posts_vote').findOneAndUpdate(
+        { $and: [{userId: o.userId}, {postId: o.postId}] }, 
+        { $set: {like: 1} } , 
+         { upsert: true } )
+  } else {
+    await dbo.collection('posts_vote').insertOne(o);
+  }
+
+  return [(await dbo.collection('posts_vote').find( { $and: [{postId: o.postId}, {like: 1}]}).toArray()).length,(await dbo.collection('posts_vote').find( { $and: [{postId: o.postId}, {like: 0}]}).toArray()).length];
+}
+
+module.exports.dislike = async (o) => {
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+  const r = await dbo.collection('posts_vote').find( { $and: [{userId: o.userId}, {postId: o.postId}] }).toArray()
+  if( r.length > 0 ) {
+      await dbo.collection('posts_vote').findOneAndUpdate(
+        { $and: [{userId: o.userId}, {postId: o.postId}] }, 
+        { $set: {like: 0} } , 
+         { upsert: true } )
+  } else {
+    await dbo.collection('posts_vote').insertOne(o);
+  }
+
+  return [(await dbo.collection('posts_vote').find( { $and: [{postId: o.postId}, {like: 1}]}).toArray()).length,(await dbo.collection('posts_vote').find( { $and: [{postId: o.postId}, {like: 0}]}).toArray()).length];
+}
+
+
+module.exports.getLikes = async (postId) => {
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+
+  return [(await dbo.collection('posts_vote').find( { $and: [{postId: postId}, {like: 1}]}).toArray()).length,(await dbo.collection('posts_vote').find( { $and: [{postId: postId}, {like: 0}]}).toArray()).length];
+
 }

@@ -58,7 +58,7 @@ class UsersPostList extends React.Component {
                             history={this.props.history} />)
                 }
                 </Grid>
-                <CreatePostModal 
+                <CreatePostModal
                     history={this.props.history}
                     createCallback={this.createPostCallback.bind(this)} />
             </div>

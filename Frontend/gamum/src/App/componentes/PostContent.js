@@ -6,6 +6,11 @@ import Typography from '@material-ui/core/Typography';
 
 import PostService from '../services/post-service';
 
+import CommentList from '../componentes/CommentList';
+
+
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,54 +42,76 @@ const PostContent = (props) => {
   const [imgUrl, setImgUrl] = useState('');
   const [fontUrl, setFontUrl] = useState('');
   const [id, setId] = useState('');
+  const [like, setLike] = useState(0);
+  const [dislike, setDislike] = useState(0);
 
 
   useEffect(() => {
     let postId = props.history && props.history.location && props.history.location.state && props.history.location.state.id && props.history.location.state.id;
-    console.log(postId)
     postService.getPost(postId)
       .then(response => {
         let post = response.data;
-        setId(post.id);
+        setId(post._id);
         setTitle(post.title);
         setContent(post.content);
         setImgUrl(post.imgUrl);
         setFontUrl(post.fontUrl);
       })
+
+      postService.getLikes(postId)
+        .then(res => {
+          setLike(res.data[0]);
+          setDislike(res.data[1]);
+        })
   })
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-        <Grid item xs={12}>
-           <Typography variant="h2" component="h2" gutterBottom>
-              { title }
-           </Typography>
-        </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h2" component="h2" gutterBottom>
+              {title}
+            </Typography>
+          </Grid>
           <Grid item >
            <Typography variant="body2" style={{ cursor: 'pointer' }}>
             Category: {fontUrl}
            </Typography>
-            
             {
-              imgUrl && imgUrl != '' && <img className={classes.img} alt="complex" src={imgUrl} /> 
+              imgUrl && imgUrl !== '' && <img className={classes.img} alt="complex" src={imgUrl} />
             }
-            
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                
                 <Typography variant="body2" gutterBottom>
-                  { content }
+                  {content}
                 </Typography>
-               
               </Grid>
-              
             </Grid>
           </Grid>
         </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+          { id && 
+            <div>
+              <span>{like}
+                <ThumbUpAltIcon 
+                  style={{ cursor: 'pointer' }} 
+                  onClick={() => postService.like(localStorage.getItem('userId'), id).then(res => { setLike(res.data[0]); setDislike(res.data[1]); })} />
+              </span>
+              <span style={{padding: '5px'}}>{dislike}
+                <ThumbDownIcon 
+                  style={{ cursor: 'pointer' }} 
+                  onClick={() => postService.dislike(localStorage.getItem('userId'), id).then(res => { setLike(res.data[0]); setDislike(res.data[1]); })} />
+              </span>
+            </div>
+          }
+          { id && <CommentList id={id}/>}
+          </Grid>
+        </Grid>
+
       </Paper>
     </div>
   );
