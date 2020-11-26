@@ -63,7 +63,12 @@ export default function Header(props) {
             variant="body2"
             href={section.url}
             className={classes.toolbarLink}
-            onClick={() => getCurrentSection(section.title)}
+            onClick={() => {
+              localStorage.getItem("section") === section.title ?
+              localStorage.setItem("section", "") :
+              localStorage.setItem("section", section.title);
+              window.location.reload();
+            }}
           >
             {section.title}
           </Link>

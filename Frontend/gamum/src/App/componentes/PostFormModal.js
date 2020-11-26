@@ -69,7 +69,7 @@ export default class PostFromModal extends React.Component {
                   <h1 className="modal-title">Preencha os fomulários</h1>
                   <input className="input-form" type='text' onChange={this.onTitleChange} placeholder='Digite o título' value={this.state.title}/>
                   <input className="input-form" type='text' onChange={this.onImgUrlChange} placeholder='Digite a url da imagem' value={this.state.imgUrl}/>
-                  <input className="input-form" type='text' onChange={this.onFontUrlChange} placeholder='Digite a url da fonte' value={this.state.fontUrl}/>
+                  <input className="input-form" type='text' onChange={this.onFontUrlChange} placeholder='Digite a categoria' value={this.state.fontUrl}/>
                   <textarea className="text-area"onChange={this.onContentChange} placeholder='Digite o conteudo da postagem' value = {this.state.content}/>
 
                   <button variant="contained" size="large" color="primary">

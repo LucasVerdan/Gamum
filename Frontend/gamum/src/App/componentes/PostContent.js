@@ -64,7 +64,7 @@ const PostContent = (props) => {
         </Grid>
           <Grid item >
            <Typography variant="body2" style={{ cursor: 'pointer' }}>
-            Add Category
+            Category: {fontUrl}
            </Typography>
             
             {
