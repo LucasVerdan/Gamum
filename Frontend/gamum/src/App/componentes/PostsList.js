@@ -2,9 +2,6 @@ import React from 'react'
 import PostService from '../services/post-service';
 import PostItem from './PostItem';
 import Grid from '@material-ui/core/Grid';
-
-
-
 class PostList extends React.Component {
     constructor(props){
        super(props);
@@ -28,7 +25,6 @@ class PostList extends React.Component {
         
         return (
             <Grid container spacing={4}>
-                {console.log(posts)}
                 {
                     
                     this.props.section === '' ? 
@@ -39,7 +35,6 @@ class PostList extends React.Component {
             </Grid>
         );
     }
-
 }
 
 export default PostList;

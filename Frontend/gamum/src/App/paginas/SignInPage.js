@@ -107,10 +107,6 @@ const SignInPage = ({ props }) => {
                         autoComplete="current-password"
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
                     <Button
                         onClick={() => pushToPost()}
                         fullWidth
@@ -121,11 +117,6 @@ const SignInPage = ({ props }) => {
                         Sign In
                     </Button>
                     <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                                </Link>
-                        </Grid>
                         <Grid item>
                             <Link href="/register" variant="body2">
                                 {"Don't have an account? Sign Up"}

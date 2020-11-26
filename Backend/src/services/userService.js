@@ -11,9 +11,23 @@ module.exports.authenticate = async ( {username, password}) =>
 }
 
 module.exports.register = async ({username, password}) => {
-    console.log(username, password)
     const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
     var dbo = await client.db("gamun");
 
     return await dbo.collection('users').insertOne({'username': username, 'password': password}).ops
+}
+
+module.exports.getUser = async (id) => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    var dbo = await client.db("gamun");
+
+    return await dbo.collection('users').findOne({ "_id": new mongodb.ObjectId(id) });
+
+}
+
+module.exports.getUsers = async () => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    var dbo = await client.db("gamun");
+
+    return await dbo.collection('users').find().toArray();
 }
