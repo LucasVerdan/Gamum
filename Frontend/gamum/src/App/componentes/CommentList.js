@@ -69,11 +69,8 @@ const CommentList = (props, state) => {
           content: comment.content,
           author: comment.author,
         }))
-
         setComments([...comments, obj[0]]);
-
       });
-
       setCommentReply('');
   }
 
