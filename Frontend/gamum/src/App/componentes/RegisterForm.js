@@ -4,7 +4,7 @@ import LoginService from '../services/login-service'
 // import { withRouter } from 'react-router-dom';
 
 import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -70,9 +70,18 @@ export default function RegisterForm(props) {
         e.preventDefault()
 
         console.log(completeName, email, username, password);
-        if(completeName && email && username && password){
-            loginService.signUp(username, password )
-                .then(e => { alert('registrado com sucesso!'); history.push('/login')})
+        if (completeName && email && username && password) {
+            loginService.signUp(username, password)
+                .then(e => {
+                    loginService.login(username, password)
+                        .then(response => {
+                            let { data } = response;
+                            alert('registrado e logado com sucesso!!!');
+                            history.push('/posts')
+                            localStorage.setItem('userId', data._id)
+                        })
+                        .catch(err => alert(err))
+                })
         } else {
             setError('Por favor preencha todos os campos');
         }
@@ -92,7 +101,7 @@ export default function RegisterForm(props) {
 
                 {error && <p className="warning">{error}</p>}
 
-                <form className={classes.form} onSubmit={onSubmit}>    
+                <form className={classes.form} onSubmit={onSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -121,15 +130,15 @@ export default function RegisterForm(props) {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="username"
-                                    label="Username"
-                                    name="username"
-                                    autoComplete="username"
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
