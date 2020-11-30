@@ -10,13 +10,14 @@ class PostList extends React.Component {
            posts: [],
            shoudRenderPostList: true,
            filteredPosts: '',
-           stateToUpdate: ''
+           searchPosts: ''
         }
     }
 
     componentDidMount() {
         this.postService.obterPosts()
             .then(response => this.setState({  posts: response.data }));
+            this.setState({ searchPosts: this.props.section})
             this.setState({ filteredPosts: localStorage.getItem("section")})
     }
 
@@ -28,10 +29,13 @@ class PostList extends React.Component {
             <Grid container spacing={4}>
                 {
                     
-                    this.state.filteredPosts === '' ? 
-                    posts && posts.map((post) => <PostItem key={post.id} {...post} />)
+                    this.state.filteredPosts !== '' ? 
+                    posts && posts.filter((post) => post.fontUrl === this.state.filteredPosts).map((post) => <PostItem key={post.id} {...post} />) 
+                    : this.props.section !== '' ? 
+                    posts && posts.filter(post => post.title.toString().includes(this.props.section)).map((post) => <PostItem key={post.id} {...post} />)
                     :
-                    posts && posts.filter((post) => post.fontUrl === this.state.filteredPosts).map((post) => <PostItem key={post.id} {...post} />)
+                    posts && posts.map((post) => <PostItem key={post.id} {...post} />) 
+                    
                 }
             </Grid>
         );

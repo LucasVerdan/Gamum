@@ -15,13 +15,11 @@ const sections = [
     { title: 'Virtual Reality', url: '#' },
 
   ];
-
 const InicialPage = (props) => {
   const [sectionPost, setSection ] = useState('');
   const getCurrentSection = (section) => {
     setSection(section);
   }
-
         return (
           <React.Fragment>
             <Header title="GAMUM" sections={sections} getCurrentSection={(data) => getCurrentSection(data)}/>
