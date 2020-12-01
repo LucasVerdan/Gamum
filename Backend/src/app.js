@@ -1,6 +1,6 @@
 const { createPost, deletePost, getPost, updatePost, getPostById, getUserPosts, likePost, dislikePost, getLikes } = require ('./controllers/postController');
-const { auth, register } = require('./controllers/userController');
 const { getComments, createComment, deleteComment } = require('./controllers/commentController')
+const { auth, register, getUser, deleteUser, updateUser } = require('./controllers/userController');
 const express = require('express');
 
 const app = express()
@@ -41,6 +41,9 @@ app.post('/like', likePost);
 app.post('/dislike', dislikePost)
 app.get('/getLikes/:id', getLikes )
 
+app.get('/getUser/:id', getUser)
+app.delete('/deleteUser/:id', deleteUser)
+app.post('/updateUser/:id', updateUser)
 
 app.get('/getComments/:id', getComments)
 app.post('/createComment', createComment)

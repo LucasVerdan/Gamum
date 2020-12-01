@@ -12,5 +12,14 @@ export default class LoginService {
     signUp(username, password, email, completeName){
         return this.service.post('/register', {username: username, password: password, email: email, completeName: completeName});
     }
+    getUser(userId){
+        return this.service.get(`/getUser/${userId}`)
+    }
+    updateUser(username, password, email, completeName, userId){
+        return this.service.post(`/updateUser/${userId}`, {username: username, password: password, email: email, completeName: completeName})
+    }
+    deleteUser(userId) {
+        return this.service.delete(`/deleteUser/${userId}`)
+    }
 
 }

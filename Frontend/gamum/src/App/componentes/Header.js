@@ -34,6 +34,9 @@ export default function Header(props) {
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
         <Button size="small" href="/posts">Inicio</Button>
+        <Button variant="outlined" size="small" href="/user/edit-user">
+          Edit Profile
+        </Button>
         <Typography
           component="h2"
           variant="h5"

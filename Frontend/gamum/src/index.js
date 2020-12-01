@@ -9,6 +9,7 @@ import UserPosts from './App/paginas/UserPosts'
 import InicialPage from './App/paginas/InicialPage'
 import PostPage from './App/paginas/PostPage'
 import RegisterPage from './App/paginas/RegisterPage'
+import EditUserPage from './App/paginas/EditUserPage'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route path="/posts" exact component={InicialPage}/>
         <Route path="/posts/my-posts" component={UserPosts}/>
         <Route path="/posts/:id" component={PostPage}/>
+        <Route path="/user/edit-user" component={EditUserPage}/>
     </Switch>
 </ BrowserRouter>,
   document.getElementById('root')

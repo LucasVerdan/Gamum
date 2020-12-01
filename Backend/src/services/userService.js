@@ -20,7 +20,6 @@ module.exports.register = async (user) => {
 module.exports.getUser = async (id) => {
     const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
     var dbo = await client.db("gamun");
-
     return await dbo.collection('users').findOne({ "_id": new mongodb.ObjectId(id) });
 
 }
@@ -28,6 +27,21 @@ module.exports.getUser = async (id) => {
 module.exports.getUsers = async () => {
     const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
     var dbo = await client.db("gamun");
-
     return await dbo.collection('users').find().toArray();
 }
+
+module.exports.deleteUser = async (userId) => {
+
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    var dbo = await client.db("gamun");
+    return dbo.collection("users").deleteOne( { "_id": new mongodb.ObjectId(userId) } );
+  };
+
+  module.exports.updateUser = async (userId, user) => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    var dbo = await client.db("gamun");
+    return dbo.collection('users').findOneAndUpdate(
+      { "_id": new mongodb.ObjectId(userId) }, 
+      { $set: user },
+      { upsert: true } );
+  };  

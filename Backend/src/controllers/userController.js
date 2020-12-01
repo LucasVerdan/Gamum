@@ -10,3 +10,26 @@ exports.register = async (req, res) => {
         .then(e => res.json(e))
         .catch(err => res.status(300));
 }
+
+exports.getUser = async (req, res) => {
+    let userId = req.params.id;
+    console.log(userId);
+    await userService.getUser(userId)
+    .then(e => {
+        console.log(res.json(e))
+       return res.json(e)
+    })
+        .catch(err => res.status(300));
+}
+
+exports.deleteUser = async (req, res) => {
+    let userId = req.params.id;
+    await userService.deleteUser(userId);
+    res.status(204).send(true);
+}
+
+exports.updateUser = async (req,res) => {
+    let userId = req.params.id;
+    await userService.updateUser(userId, req.body);
+    res.json(await userService.getUser(userId));
+  }
