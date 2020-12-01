@@ -13,4 +13,8 @@ export default class CommentService {
         return this.service.post(`/createComment`, { content: content, postId: postId, userId: userId})
     }
 
+    deleteComment(id) {
+        return this.service.get(`/deleteComment/${id}`);
+    }
+
 }

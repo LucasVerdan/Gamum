@@ -23,3 +23,10 @@ module.exports.create = async (comment) => {
 
   return dbo.collection("comments").insertOne(comment);  
 }
+
+module.exports.deleteComment = async (id) => {
+  const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  var dbo = await client.db("gamun");
+
+  return dbo.collection("comments").deleteOne( { '_id': new mongodb.ObjectID(id) } );
+} 
