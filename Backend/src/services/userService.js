@@ -10,11 +10,11 @@ module.exports.authenticate = async ( {username, password}) =>
     return r.find(e => e.password == password);
 }
 
-module.exports.register = async ({username, password}) => {
+module.exports.register = async (user) => {
     const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
     var dbo = await client.db("gamun");
 
-    return await dbo.collection('users').insertOne({'username': username, 'password': password}).ops
+    return await dbo.collection('users').insertOne(user).ops
 }
 
 module.exports.getUser = async (id) => {

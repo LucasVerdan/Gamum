@@ -71,7 +71,7 @@ export default function RegisterForm(props) {
 
         console.log(completeName, email, username, password);
         if (completeName && email && username && password) {
-            loginService.signUp(username, password)
+            loginService.signUp(username, password, email, completeName)
                 .then(e => {
                     loginService.login(username, password)
                         .then(response => {
