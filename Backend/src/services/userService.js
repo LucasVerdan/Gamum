@@ -11,7 +11,6 @@ module.exports.authenticate = async ( {username, password}) =>
 }
 
 module.exports.register = async (user) => {
-    console.log(user)
     const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
     var dbo = await client.db("gamun");
 
